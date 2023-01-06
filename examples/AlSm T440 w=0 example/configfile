@@ -1,0 +1,45 @@
+# collective variable example: monitor distances
+
+colvarsTrajFrequency 100 # output every 100 steps
+colvarsRestartFrequency 100000
+
+colvar {
+  name dist
+  width 0.01
+  lowerBoundary 0
+  upperBoundary 10
+  expandBoundaries on 
+
+
+  rmsd {
+    atoms {
+      atomNumbers 15371 28624 16486 16344 5722 25284 4183 13992 27437 28647
+	}
+	refPositions {
+		(4.5775099, 3.1468101, 28.1723003)
+		(6.66922, 1.5891301, 29.2213001)
+		(5.54105, 1.09466, 26.3696003)
+		(9.0441599, 0.386589, 26.9137002)
+		(7.1522198, -0.753047, 24.7595997)
+		(4.3483701, -1.3891701, 25.1609001)
+		(6.1189299, -1.66561, 27.8827)
+		(4.0469399, 0.565084, 28.9846974)
+		(3.7842801, -2.01688, 30.4376984)
+		(3.01459, -2.0903201, 27.5718022)
+	}                 
+  }                   
+}                    
+                      
+                     
+metadynamics {        
+  name meta           
+  colvars dist        
+  hillWidth 20        
+  outputEnergy on     
+  hillWeight 0.01    
+  newHillFrequency 1000
+  writeFreeEnergyFile on
+  saveFreeEnergyFile on
+  wellTempered on     
+  biasTemperature 1500
+}                    
